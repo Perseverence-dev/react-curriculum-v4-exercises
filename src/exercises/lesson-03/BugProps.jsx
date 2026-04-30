@@ -11,12 +11,21 @@
 
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
+import { useState } from 'react';
 
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  //let message = 'Hello, ' + name;
 
+  const [message, setMessage] = useState('Hello, ' + name);
+
+  /*
   function handleChange() {
     message = 'Hi, ' + name + '!';
+  }
+  */
+
+  function handleChange() {
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -29,3 +38,6 @@ export default function BugProps({ name = 'friend' }) {
 
 // Explanation:
 // (Write your explanation here)
+// Here message is a normal variable. When we change it, React does not know that it has changed, so it does not re-render the component.
+// To fix this, I have imported the useState hook from React. Now I can use it to create a state variable for message.
+// When we update the state variable using the setMessage function, React will re-render the component and display the updated message.
