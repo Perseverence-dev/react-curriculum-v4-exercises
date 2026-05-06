@@ -10,11 +10,11 @@
 
 import { useState } from 'react';
 export default function BugMutatedState() {
-  let [count, setCount] = useState(0);
+  let [count, setCount] = useState(0); //0
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    //count++; // This mutates the state directly, which is not recommended in React
+    setCount((previousCount) => previousCount + 1); // State updated using the previous value in REACT
   }
 
   return (
@@ -27,3 +27,5 @@ export default function BugMutatedState() {
 
 // Explanation:
 // (Write your explanation here)
+// DO NOT change the state variable directly (count++), as it can lead to unexpected behavior.
+// Instead, use the setCount function to update the state based on the previous value. This ensures that React can properly manage the state and re-render the component when necessary.
