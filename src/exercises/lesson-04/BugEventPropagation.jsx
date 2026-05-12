@@ -6,7 +6,8 @@ export default function BugEventPropagation() {
     alert("RED BOX CLICKED ❌ Don't show me!");
   }
 
-  function handleInnerClick() {
+  function handleInnerClick(event) {
+    event.stopPropagation(); // Stop the event from bubbling up to the parent div
     alert('Button Clicked ✅');
   }
 
@@ -17,8 +18,14 @@ export default function BugEventPropagation() {
         style={{ padding: 20, border: '2px solid red' }}
         onClick={handleOuterClick}
       >
+        <p>Clicking the button should not trigger the red box alert.</p>
         <button onClick={handleInnerClick}>Click inner button</button>
       </div>
     </>
   );
 }
+
+// Explanation:
+// React click events bubble from the deepest element upward.
+// Without stopPropagation(), clicking the button also triggers the parent div's click handler.
+// Calling event.stopPropagation() keeps the button click isolated.
