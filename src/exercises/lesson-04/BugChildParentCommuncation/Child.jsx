@@ -1,4 +1,4 @@
-export default function Child(onIncrement) {
+export default function Child({ onIncrement }) {
   return (
     <button type="button" onClick={onIncrement}>
       Increment Counter
